@@ -1,0 +1,12 @@
+.cardWrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: beige;
+    min-height: 100vh; 
+}
+
+.cardContent{
+    max-width: 28rem;
+    width: 100%;
+} 
