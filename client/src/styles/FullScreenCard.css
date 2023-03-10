@@ -25,3 +25,31 @@
     gap: 0.75rem;
     margin-top: 0.5rem;
 }
+
+.cardTitle{
+    font-size: 1.875rem; /* 30px */
+    line-height: 2.25rem; /* 36px */
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 2rem;
+}
+
+.cardForm{
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+}
+
+.inputRow{
+    display: flex; 
+    width: 100%; 
+    margin: 10px; 
+}
+
+.inputRow label {
+    flex: 0.3; 
+}
+
+.inputRow input { 
+    flex: 0.7; 
+}

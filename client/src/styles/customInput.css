@@ -1,0 +1,14 @@
+.customInput{
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem; 
+    border: gray 2px solid;
+    outline: none;
+    width: 100%;
+    border-radius: 0.25rem; 
+}
+
+.customInput:focus{
+    border-color: aqua;
+}   
