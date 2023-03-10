@@ -10,3 +10,18 @@
     max-width: 28rem;
     width: 100%;
 } 
+
+.cardBody{
+
+    border-radius: 0.5rem; /* 8px */ 
+    padding: 1.5rem; 
+    background-color: white;
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+}
+
+.cardBelow{
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+}

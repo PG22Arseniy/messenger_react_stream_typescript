@@ -15,3 +15,19 @@ export const FullScreenCard = ({children}: FullScreenCardProps)=> {
         </div>
     )
 }
+
+FullScreenCard.Body = function ({children}: FullScreenCardProps){
+    return (
+        <div className="cardBody"> 
+            {children}
+        </div>
+    )
+}
+
+FullScreenCard.BelowCard = function ({children}: FullScreenCardProps){
+    return (
+        <div className="cardBelow"> 
+            {children}
+        </div>
+    )
+}
