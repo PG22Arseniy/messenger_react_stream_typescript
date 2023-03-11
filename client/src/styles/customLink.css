@@ -1,0 +1,6 @@
+.customLink{
+    color: blue;
+    text-decoration: underline;
+    text-underline-offset: 0.5rem; 
+    margin-top: 10px; 
+}

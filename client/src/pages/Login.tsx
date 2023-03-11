@@ -3,11 +3,16 @@ import { CustomButton } from "../components/CustomButton"
 import { CustomInput } from "../components/CustomInput"
 import "../styles/FullScreenCard.css"
 import { useAuth } from "../context/AuthContext"
+import { Navigate } from "react-router-dom"
 
 export const Login = () => {
 
 
-    const {login} = useAuth()
+    const {login, user} = useAuth()
+
+    if (user != null) {
+        return <Navigate to = "/"/>
+    }
 
     //refs to input values
 

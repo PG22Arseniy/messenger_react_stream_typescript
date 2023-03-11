@@ -33,13 +33,18 @@ export async function userRoutes(app:FastifyInstance) {
             return res.status(400).send ("Null or Empty id") 
         }
 
-        // check for existing users with same id
-        const existingUsers = await streamChat.queryUsers({id})
-        if (existingUsers.users.length > 0){
-            return res.status(400).send("Users ID taken")
-        }
+        // get user with id
+        const {users: [user]} = await streamChat.queryUsers({id})
+        if (user == null) return res.status(401).send()
 
-        // login user 
+        const token = streamChat.createToken(id) // create user token 
+
+        // result authed user with his token 
+        return {
+            token,
+            user: {name: user.name, id: user.id, image: user.url}
+        }
+        
         
     })
 } 
