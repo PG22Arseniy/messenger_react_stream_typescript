@@ -22,8 +22,12 @@ export const useAuth = () => {
     return useContext(Context) as AuthContext 
 }
 
+export const useLoggedInAuth = ()=> {
+    return useContext(Context) as AuthContext & Required<Pick<AuthContext, "user">>
+}
 
-type AuthProviderProps = {
+
+type AuthProviderProps = { 
     children: ReactNode
 }
 
