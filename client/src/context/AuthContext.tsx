@@ -3,6 +3,7 @@ import axios, { AxiosResponse } from "axios"
 import { ReactNode, createContext, useContext, useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { StreamChat } from "stream-chat"
+import { useLocalStorage } from "../hooks/useLocalStorage"
 
 type AuthContext = {
     signup: UseMutationResult<AxiosResponse, unknown, User>
@@ -35,8 +36,8 @@ export  const AuthProvider = ({children}: AuthProviderProps) => {
 
 
     // states
-    const [user, setUser] = useState<User>()
-    const [token, setToken] = useState<string>()
+    const [user, setUser] = useLocalStorage<User>("user")
+    const [token, setToken] = useLocalStorage<string>("token") 
     const [streamChat, setStreamChat] = useState<StreamChat>()
 
     // react navigation
