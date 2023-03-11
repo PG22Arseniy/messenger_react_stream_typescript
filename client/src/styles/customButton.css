@@ -1,0 +1,17 @@
+.customButton{
+    width: 100%;
+    margin: 15px;
+    background-color: aqua;
+    border: 2px gray solid; 
+    padding: 0.5rem;
+    font-weight: bold; 
+
+}
+
+.customButton:hover{
+    background-color: aquamarine;
+}
+
+.customButton:disabled{
+    background-color: gray; 
+}
