@@ -14,7 +14,7 @@ export const AuthLayout = () => {
             </FullScreenCard.Body>
             <FullScreenCard.BelowCard>
                 <CustomLink to= {isLoginPage ? "/signup" : "/login"}>
-                {isLoginPage ? "Create Account" : "Login"} 
+                    {isLoginPage ? "Create Account" : "Login"} 
                 </CustomLink>
             </FullScreenCard.BelowCard>
        </FullScreenCard> 
