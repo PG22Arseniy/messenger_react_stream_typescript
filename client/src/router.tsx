@@ -18,9 +18,9 @@ export const router = createBrowserRouter([
                     {index: true, element:<Home/>},
                     {path:"/channel", children:[
                         {
-                            path: "new", element: <NewChannel/> 
-                        }
-                    ]}
+                            path: "new", element: <NewChannel/>  
+                        },
+                    ]} 
                 ]
             },
             {

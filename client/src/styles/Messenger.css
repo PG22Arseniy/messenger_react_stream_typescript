@@ -1,3 +1,6 @@
+@import url("../index.css"); 
+
+
 .channelsSection{
     width: 15rem;
     display: flex;
@@ -5,6 +8,7 @@
     gap: 1rem;
     margin: 0.75rem; 
     height: 100%; 
+    margin-right: 2.25rem;  
 } 
 
 .activeChannel {
@@ -18,6 +22,7 @@
     display: flex;
     gap: 0.75rem;
     align-items: center; 
+    position: relative; 
 }
 
 .nonActiveChannel{
@@ -39,5 +44,74 @@
     height: 2.5rem;
     border-radius: 9999px;
     object-position: center;
-    object-fit: cover;
+    object-fit: cover; 
+}
+
+.deleteIcon{
+    width: 10px; 
+    height: 10px;
+    background-color: brown;  
+    border-radius: 9999px;   
+    padding:10px; 
+    display: flex;  
+    background-image: url("../images/R.png");
+    justify-content: center;
+    align-items: center;          
+    color: blue;   
+} 
+
+.closeIcon{
+    width: 10px; 
+    height: 10px;
+    background-color: brown;  
+    border-radius: 9999px;   
+    padding:10px; 
+    display: flex;  
+    background-image: url("../images/R.png");
+    justify-content: center;
+    align-items: center;     
+    position: absolute;
+    right: 0%; 
+    top: 0%;
+    margin-right: 25px;   
+    margin-top: 15px;       
+    color: blue; 
+    cursor: pointer; 
+} 
+
+.deleteIcon:hover {
+    background: red;
+    color: blue;  
+}
+
+.closeIcon:hover {
+    background: red;
+    color: blue;  
+}
+
+.str-chat__avatar{
+    cursor: pointer; 
+}
+
+.editButton{
+    position: absolute;
+    bottom: 0%; 
+    left: 30%;  
+    margin-bottom: -10px;  
+    background-color: antiquewhite; 
+    border-radius: 2rem;   
+}
+
+.editChannelWrapper{ 
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    z-index: 2; 
+    opacity: 0.7; 
+}
+.channelContainer{
+    position: relative; 
 }

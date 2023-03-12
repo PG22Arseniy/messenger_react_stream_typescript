@@ -1,4 +1,3 @@
-import { Channel, User } from "stream-chat"
 import { useLoggedInAuth } from "../context/AuthContext"
 import { LoadingIndicator } from "stream-chat-react"
 import { FormEvent, useRef, useState } from "react"
@@ -29,12 +28,7 @@ export const NewChannel = () => {
         name:string
         memberIds: string[]
         url?:string
-    }
-
-    type SelectProps = {
-        label: string,
-        value: string
-    }
+    }  
 
     const createChannel = useMutation({
         mutationFn: ({name, memberIds, url }: ChannelProps)=> {
