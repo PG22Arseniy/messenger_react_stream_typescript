@@ -10,9 +10,10 @@ type AuthContext = {
     login: UseMutationResult<{token: string, user: User}, unknown, string>
     user?: User
     streamChat?: StreamChat
+    logout: UseMutationResult<AxiosResponse, unknown, void> 
 }
 
-type User = {
+type User = { 
     id: string
     name: string
     url?: string
@@ -95,7 +96,27 @@ export  const AuthProvider = ({children}: AuthProviderProps) => {
         })
     }, [user, token])
 
-    return <Context.Provider value={{signup, login, user, streamChat}}>  
+
+    const ClearData = () => {
+        setUser(undefined)
+        setToken(undefined)
+        setStreamChat(undefined)
+    }
+
+    const logout = useMutation({  
+        
+        mutationFn: () => {
+            const id = user?.id;
+            console.log(id)  
+            return axios.post(`${import.meta.env.VITE_SERVER_URL}/logout`, {token,  id})  
+        },
+        onSuccess() {
+            ClearData();
+            navigate("/login")   
+        }
+    })
+
+    return <Context.Provider value={{signup, login, user, streamChat, logout}}>  
         {children} 
     </Context.Provider>
 }

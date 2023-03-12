@@ -25,9 +25,9 @@ export const Home = () => {
 
 const Channels = ({loadedChannels}: ChannelListMessengerProps) => {
 
-    const navigate = useNavigate();
     const {setActiveChannel, channel: activeChannel} = useChatContext()
-   
+    const navigate = useNavigate();
+    const {logout} = useLoggedInAuth()
 
 
     return (
@@ -67,6 +67,12 @@ const Channels = ({loadedChannels}: ChannelListMessengerProps) => {
             })
             : "No conversations"
         }
+        <hr/>
+        <CustomButton 
+        disabled = {logout.isLoading} 
+        onClick={()=> logout.mutate()}> 
+            Logout 
+        </CustomButton>
         
     </div> 
     )

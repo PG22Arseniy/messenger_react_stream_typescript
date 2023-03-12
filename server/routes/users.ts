@@ -1,5 +1,5 @@
 import { FastifyInstance } from "fastify";
-import {StreamChat} from "stream-chat"
+import {StreamChat, User} from "stream-chat"
 
 // get access to my stream chat 
 const streamChat = StreamChat.getInstance(process.env.STREAM_API_KEY!, process.env.STREAM_PRIVATE_API_KEY!)
@@ -47,4 +47,26 @@ export async function userRoutes(app:FastifyInstance) {
         
         
     })
+
+    app.post<{Body: {token:string, id: string}}> 
+    ("/logout",async (req,res) => { 
+
+        console.log("Logged out")
+         
+        const token:string = req.body.token
+        const id: string = req.body.id
+
+        console.log(token)
+        console.log(id) 
+        // check for null
+        if (token==null ||  token === "" || id==null ||  id === "" ) {
+            return res.status(400).send ("Null or Empty data") 
+        }
+
+        // Logout the user
+       streamChat.revokeUserToken(id, new Date()) 
+       
+        
+        
+    }) 
 } 
