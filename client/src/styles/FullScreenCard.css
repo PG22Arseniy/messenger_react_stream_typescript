@@ -41,9 +41,11 @@
 }
 
 .inputRow{
-    display: flex; 
+    display: flex;   
     width: 100%; 
     margin: 10px; 
+    align-items: center; 
+    flex-direction: row; 
 }
 
 .inputRow label {
@@ -52,4 +54,18 @@
 
 .inputRow input { 
     flex: 0.7; 
+}
+
+.selectConatiner {     
+    flex: 0.75; 
+    width: 100%;    
+}   
+
+@media only screen and (max-width: 500px) { 
+    .inputRow{
+        flex-direction: column;  
+    }
+    .inputRow label {
+        margin-bottom: 5px; 
+    }
 }

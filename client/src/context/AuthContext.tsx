@@ -106,8 +106,8 @@ export  const AuthProvider = ({children}: AuthProviderProps) => {
     const logout = useMutation({  
         
         mutationFn: () => {
+            
             const id = user?.id;
-            console.log(id)  
             return axios.post(`${import.meta.env.VITE_SERVER_URL}/logout`, {token,  id})  
         },
         onSuccess() {

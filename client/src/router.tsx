@@ -5,6 +5,7 @@ import { Signup } from "./pages/Signup";
 import { AuthProvider } from "./context/AuthContext";
 import { RootLayout } from "./pages/layouts/RootLayout";
 import { Home } from "./pages/Home";
+import { NewChannel } from "./pages/NewChannel";
 
 export const router = createBrowserRouter([
     {
@@ -17,7 +18,7 @@ export const router = createBrowserRouter([
                     {index: true, element:<Home/>},
                     {path:"/channel", children:[
                         {
-                            path: "new", element: <h1> New Channel</h1>
+                            path: "new", element: <NewChannel/> 
                         }
                     ]}
                 ]
