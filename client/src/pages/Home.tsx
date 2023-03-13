@@ -25,7 +25,7 @@ export const Home = () => {
                 <MessageInput/>
             </Window>
         </Channel>
-        <EditChannelForm/>  
+        <EditChannelForm/>   
     </Chat>
 }
 
@@ -137,7 +137,10 @@ const EditChannelForm = () => {
           
 
         activeChannel?.queryMembers({}).then(channel=>{
+
             //remove users
+
+            // Find different users from input and current channel
             let UsersToDelete = channel.members.filter((user)=>{
                 
                 let match = false
@@ -148,6 +151,8 @@ const EditChannelForm = () => {
                 return !match  
               }); 
 
+
+            // remove all users from chat that were not in the input
             UsersToDelete.forEach(member=>{
 
                 if (user.id === member.user_id) return 
@@ -157,6 +162,8 @@ const EditChannelForm = () => {
 
 
             //add users  
+
+            // Find different users from  current channel and input
             let UsersToAdd = members.filter((member)=>{
     
                 let match = false
@@ -167,7 +174,8 @@ const EditChannelForm = () => {
                 return !match  
                 }); 
 
-            UsersToAdd.forEach(member=>{
+            // add all users from chat that were in the input but not in the channel
+            UsersToAdd.forEach(member=>{ 
 
                 if (user.id === member.value) return
 
