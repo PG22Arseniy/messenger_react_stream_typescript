@@ -28,7 +28,7 @@ export const NewChannel = () => {
         name:string
         memberIds: string[]
         url?:string
-    }  
+    } 
 
     const createChannel = useMutation({
         mutationFn: ({name, memberIds, url }: ChannelProps)=> {

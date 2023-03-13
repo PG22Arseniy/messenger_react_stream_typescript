@@ -39,6 +39,7 @@ const Channels = ({loadedChannels}: ChannelListMessengerProps) => {
     const {logout} = useLoggedInAuth() 
 
     const openEdit = () => { 
+        // show the edit from
         document.getElementById("editSection")?.classList.remove("hidden");
     }
 
@@ -108,25 +109,75 @@ const EditChannelForm = () => {
 
     const {user, streamChat} = useLoggedInAuth()
 
-    const {setActiveChannel, channel: activeChannel} = useChatContext()
+    const {channel: activeChannel} = useChatContext()
 
       //refs to input values
       const nameRef = useRef<HTMLInputElement>(null)
       const urlRef = useRef<HTMLInputElement>(null) 
       const membersRef = useRef<SelectInstance<{label:string, value:string}>>(null) 
 
-    const handleSubmit = (e: FormEvent)=>{
-        e.preventDefault
+    const editChannel = (e: FormEvent)=>{
+        e.preventDefault()  
 
         const name = nameRef.current?.value
         const url = urlRef.current?.value
-        const members = nameRef.current?.value
-
-        console.log (activeChannel)   
+        const members = membersRef.current?.getValue()
+         
 
         // null or empty check
-        //if (name == null  || name === "" || members == null || members.length === 0) return
+        if (name == null  || name === "" || members == null || members.length === 0) return
+        
+        activeChannel?.update( 
+            {
+                name: name,
+                image: url,   
+            }  
+        );
 
+          
+
+        activeChannel?.queryMembers({}).then(channel=>{
+            //remove users
+            let UsersToDelete = channel.members.filter((user)=>{
+                
+                let match = false
+                members.forEach(member => {
+                    if (member.value === user.user_id) match=true     
+                })
+
+                return !match  
+              }); 
+
+            UsersToDelete.forEach(member=>{
+
+                if (user.id === member.user_id) return 
+
+                activeChannel.removeMembers ([member.user_id!])
+            })
+
+
+            //add users  
+            let UsersToAdd = members.filter((member)=>{
+    
+                let match = false
+                channel.members.forEach(user => {
+                    if (member.value === user.user_id) match=true     
+                })
+
+                return !match  
+                }); 
+
+            UsersToAdd.forEach(member=>{
+
+                if (user.id === member.value) return
+
+                activeChannel.addMembers([member.value]) 
+            }) 
+             
+        })
+
+        closeEdit() 
+        
     }
 
     const users = useQuery({
@@ -143,18 +194,18 @@ const EditChannelForm = () => {
     }
 
     return(
-        <div id = "editSection" className="editChannelWrapper hidden">   
+        <div id = "editSection" className="editChannelWrapper hidden">    
              <FullScreenCard >
                 <FullScreenCard.Body>
                     <h1 className="cardTitle"> Edit Channel </h1> 
-                    <form onSubmit={handleSubmit} className="cardForm">
+                    <form onSubmit={editChannel} className="cardForm">
                         <div className="inputRow">
-                            <label htmlFor="channelname">Channel Name</label>
-                            <CustomInput id="channelname" required pattern="\S*" ref={nameRef} value={activeChannel?.data?.name}/> 
+                            <label htmlFor="channelName">Channel Name</label>
+                            <CustomInput id="channelName" required pattern="\S*" ref={nameRef}/>    
                         </div>
                         <div className="inputRow"> 
-                            <label htmlFor="url"> Image URL</label> 
-                            <CustomInput  id="url" type="url" ref = {urlRef} value={activeChannel?.data?.image}/> 
+                            <label htmlFor="channelUrl"> Image URL</label> 
+                            <CustomInput  id="channelUrl" type="url" ref = {urlRef} />  
                         </div> 
 
                         <div className="inputRow"> 
